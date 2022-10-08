@@ -1,4 +1,3 @@
-import ReactTooltip from "react-tooltip";
 import Tag from "../Tag";
 import styles from "./index.module.css";
 import { getRandomColor, timeSince } from "../../utils/common";
@@ -7,10 +6,8 @@ import IssueIcon from "../IssueIcon";
 function IssuesList({ issue }) {
   let { title, labels, comments, number, user, created_at, state } = issue;
   let createdAt = new Date(created_at);
-  let randomPicker = getRandomColor();
   return (
     <div className={styles.issueWrapper} key={`${number}`}>
-      <ReactTooltip />
       <div className={styles.openIssueList}>
         <div className={styles.iscon} data-tip={`${state} issue`}>
           <IssueIcon type={state} />
@@ -22,6 +19,7 @@ function IssuesList({ issue }) {
           <span>
             {labels &&
               labels.map((label, ind) => {
+                let randomPicker = getRandomColor(ind);
                 return (
                   <Tag
                     textColor={randomPicker.textColor}
@@ -34,7 +32,7 @@ function IssuesList({ issue }) {
           </span>
           <div className={styles.openBy}>
             #{number} opened {timeSince(new Date(createdAt))} by{" "}
-            <a className={styles.user}>{user?.login}</a>
+            <a className={styles.user}>{user.login}</a>
           </div>
         </div>
       </div>

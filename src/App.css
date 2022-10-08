@@ -36,3 +36,9 @@
   height: 700px;
   overflow-y: scroll;
 }
+.loader {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import ReactTooltip from "react-tooltip";
 
 import "./App.css";
 import Header from "./components/Header";
@@ -12,17 +13,20 @@ function App() {
   const [loading, setLoading] = useState(false);
   function fetchIssues({ page = 1 }) {
     setLoading(true);
-    fetch(`https://api.github.com/repos/facebook/react/issues?page=${page}`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer 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",
-      },
-    })
+    fetch(
+      `https://api.github.com/repos/facebook/react/issues?page=${page}&per_page=15`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer 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",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((res) => {
         setLoading(false);
         setList([...list, ...res]);
-        if (res?.length < 30) {
+        if (res?.length < 15) {
           setHasmore(false);
         }
       });
@@ -44,6 +48,7 @@ function App() {
     <div className="issue-wrapper">
       <Header />
       <div className="list-wrapper">
+        <ReactTooltip />
         <InfiniteScroll
           loadMore={loadFunc}
           hasMore={hasMore}

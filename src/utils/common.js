@@ -64,8 +64,7 @@ const tagColors = [
     bgColor: "#d4c5f9",
   },
 ];
-function getRandomColor() {
-  let randomNum = Math.floor(Math.random() * 10);
-  return tagColors[randomNum];
+function getRandomColor(index) {
+  return tagColors[index];
 }
 export { timeSince, getRandomColor };
