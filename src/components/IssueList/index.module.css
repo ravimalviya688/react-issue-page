@@ -1,0 +1,61 @@
+.header {
+  background-color: var(--backgord-color-hover);
+}
+
+.heading {
+  color: #24292f;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  text-decoration: none !important;
+  margin-right: 5px;
+}
+.heading:hover {
+  color: #0969da;
+}
+.issueWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid #d8dee4;
+}
+.issueWrapper:hover {
+  background-color: #f6f8fa;
+}
+.openIssueList {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 1000px;
+}
+.iscon {
+  align-self: flex-start;
+}
+.openBy {
+  font-size: 12px;
+  line-height: 18px;
+  color: #57606a;
+  margin-top: 5px;
+}
+.comment {
+  align-self: flex-start;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.comment:hover {
+  color: #0969da;
+  cursor: pointer;
+}
+.comment:hover svg {
+  fill: #0969da;
+}
+.user:hover {
+  color: #0969da;
+  cursor: pointer;
+}

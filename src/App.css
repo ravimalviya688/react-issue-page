@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
-
-.App-link {
-  color: #61dafb;
+.issue-wrapper {
+  --color-border-default: #d0d7de;
+  --backgord-color-hover: #f6f8f8;
+  --color-fg-default: #24292f;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.issue-wrapper {
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  margin: 50px;
+}
+.list-wrapper {
+  height: 700px;
+  overflow-y: scroll;
 }

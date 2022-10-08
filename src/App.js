@@ -1,23 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCallback, useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
+
+import "./App.css";
+import Header from "./components/Header";
+import IssuesList from "./components/IssueList";
 
 function App() {
+  const [list, setList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasmore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  function fetchIssues({ page = 1 }) {
+    setLoading(true);
+    fetch(`https://api.github.com/repos/facebook/react/issues?page=${page}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer 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",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setLoading(false);
+        setList([...list, ...res]);
+        if (res?.length < 30) {
+          setHasmore(false);
+        }
+      });
+  }
+  useEffect(() => {
+    fetchIssues({ page });
+  }, [page]);
+  const loadFunc = useCallback(() => {
+    if (loading) {
+      return false;
+    }
+    setTimeout(() => {
+      setPage(page + 1);
+    }, 400);
+  }, [page, loading]);
+  console.log("hasmore", hasMore);
+  console.log("page", page);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="issue-wrapper">
+      <Header />
+      <div className="list-wrapper">
+        <InfiniteScroll
+          loadMore={loadFunc}
+          hasMore={hasMore}
+          loader={
+            <div className="loader" key={0}>
+              Loading ...
+            </div>
+          }
+          useWindow={false}
         >
-          Learn React
-        </a>
-      </header>
+          {list &&
+            list.map((issue, ind) => {
+              return <IssuesList issue={issue} />;
+            })}
+        </InfiniteScroll>
+      </div>
     </div>
   );
 }
