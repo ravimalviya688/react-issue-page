@@ -18,7 +18,6 @@ function App() {
       {
         headers: {
           "Content-Type": "application/json",
-          authorization: "Bearer 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",
         },
       }
     )
